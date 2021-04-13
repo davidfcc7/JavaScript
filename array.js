@@ -1,16 +1,16 @@
 var socio = ["nombre", "apellido", "telefono", "usuario", "clave"];
 
-//agregar otro valor
+//agregar otro valor al final del arreglo
 var socios = socio.push("repetir clave");
-
-//aguregar otro valor y ubicarlo de ultimas
-var ultimoSocio = socio.pop("repetir clave");
 
 //agregar otro valor y ubicarlo de primeras
 var primerSocio = socio.unshift("repetir clave");
 
-//saca el primer valor del string
+//borra el primer valor del arreglo
 var borrarSocio = socio.shift();
+
+//borra el ultimo valor de un arreglo
+var ultimoSocio = socio.pop("repetir clave");
 
 //saber la posicion de un elemento
 var posicion = socio.indexOf("apellido");
