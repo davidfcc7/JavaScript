@@ -12,8 +12,8 @@ function saludarFamilia(f){
     saludarFamilia(f)
 }*/
 
-while (familia.length > 0){
+/*while (familia.length > 0){
     var f = familia.shift();
     saludarFamilia(f);
-}
+}*/
 
