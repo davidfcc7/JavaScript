@@ -16,7 +16,7 @@ var posicionCantidad = nombre.substr(1, 4)
 var ultimaLetra = nombre.charAt(11)
 
 //dentro de las llaves se puede escribir codigo js
-console.log('me llamo ' + `${nombreMayuscula} ${apellidoMinuscula}` + ' y tengo ' + edad + ' años')
+console.log(`me llamo ${nombreMayuscula} ${apellidoMinuscula} y tengo ${edad} años`)
 console.log('la primera letra de mi nombre es: ' + primeraLetraNombre)
 console.log('mi nombre tiene ' + cantidadLetrasNombre + ' letras y mi apellido ' + cantidadLetrasApellido + ' letras')
 console.log('las letras de mi nombre despues de la primera son: ' + posicionCantidad)
