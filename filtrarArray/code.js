@@ -33,7 +33,7 @@ var personasAltas = familia.filter(function (persona){
 })
 
 var personasBajas = familia.filter(function({altura}){
-    return altura < 1.7
+    return altura < 1.7 
 })
 
 //mostrar todos los objetos de un arreglo
