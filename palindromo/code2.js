@@ -1,4 +1,4 @@
-function texto()
+/*function texto()
 {
 	var palabra="anulalalunapaisajemontanaguaamoraromacomidaluzazulsillagatobotellacamarayosoypalindromocasaverdebanderaventanacangrejolarutanosaportootropasonaturaliniciaracaestoseralodoodolaresdonasbarcosmarcieloaviontierrapaisbicicletaestonoespalindromojugarseverlasalrevesusandounradarenelojorejero"
 
@@ -23,5 +23,27 @@ function texto()
     }
     
 }
-texto()
+texto()*/
+
+let cadena = 'anulalalunapaisajemontanaguaamoraromacomidaluzazulsillagatobotellacamarayosoypalindromocasaverdebanderaventanacangrejolarutanosaportootropasonaturaliniciaracaestoseralodoodolaresdonasbarcosmarcieloaviontierrapaisbicicletaestonoespalindromojugarseverlasalrevesusandounradarenelojorejero'
+
+let cadenaArray = cadena.split("")
+
+let palindromo = () =>{
+    
+    for (let i = 0; i < cadenaArray.length; i++){
+        let inicial = ''
+        let inicialArray = inicial.split("")
+        let final = ''
+        let finalArray = final.split("")
+        for (let j = i+1; j < cadenaArray.length; j++){
+            if (cadenaArray[i] === cadenaArray[j]){
+                inicialArray = cadenaArray[i]
+                finalArray = cadenaArray[j]
+            } 
+            console.log(inicialArray)
+        }
+    }
+}
+palindromo()
 
