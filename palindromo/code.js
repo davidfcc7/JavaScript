@@ -1,42 +1,42 @@
-/*function texto()
-{
-	var palabra = 'anulalaluna'
- 
-	for (var i = 0; i < palabra.length; i++){
-		if(palabra[i] != palabra[palabra.length-i-1]){
-			return false;
-		}
-	}
-	return true;
-}
- count=0
-if(texto())
-{
-	count += 1
-    console.log(count)
-}else{
-	console.log('no es un palindromo')
-}*/
+let palabra = 'anulalalunapaisajemontanaguaamoraromacomidaluzazulsillagatobotellacamarayosoypalindromocasaverdebanderaventanacangrejolarutanosaportootropasonaturaliniciaracaestoseralodoodolaresdonasbarcosmarcieloaviontierrapaisbicicletaestonoespalindromojugarseverlasalrevesusandounradarenelojorejero'
 
-function texto()
-{
-	var palabra=prompt("Escribe una palabra").toLowerCase();
- 
-	// eliminamos los espacios en blanco
-	palabra=palabra.replace(/ /g, "");
- 
-	for (var i=0;i<palabra.length;i++){
-		if(palabra[i]!=palabra[palabra.length-i-1]){
-			return false;
+let palabraToArray = palabra.split("")
+
+const invertirCadena = cadena => cadena.split("").reverse().join("");
+let revesPalabra = invertirCadena(palabra);
+console.log(revesPalabra);
+
+let revesPalabraArray = revesPalabra.split("")
+let palabraArray = palabra.split("")
+
+let dic = {}
+
+let palindromo = () => {	
+	let palabraAux = []
+	let count = 0
+	let contPalabras = 0
+	for (let i = 0; i < palabraToArray.length; i++){
+		if (palabraToArray[i] === revesPalabraArray[revesPalabraArray.length-i-1]){
+			count++
+			palabraAux.push(palabra[i]) 
 		}
+		else{
+			debugger
+			if(count > 3){
+				contPalabras++
+				dic.put(contPalabras,palabraAux)
+			}
+			else{
+				count = 0
+				palabraAux.length = 0
+			}
+		}
+
 	}
-	return true;
+	return true
 }
- contador=0
-if(texto())
-{
-	contador++
-    console.log(contador)
-}else{
-	alert("Esto no es palíndromo")
-}
+
+palindromo()
+
+console.log(dic)
+
