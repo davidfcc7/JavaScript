@@ -55,13 +55,17 @@ function obtenerNave(idNave) {
 let error = ()=> console.log(`error, dato no encontrado`)
 
 obtenerPersonajes(1)
-    .then((date) => console.log(`Hola yo soy ${date.name}, mido ${date.height} cm y peso ${date.mass} kg`))
+    .then((date) => {
+        console.log(`Hola yo soy ${date.name}, mido ${date.height} cm y peso ${date.mass} kg`)
+        return obtenerPlaneta(1)
+    })
+    .catch(error) 
+    .then((date) => {
+        console.log(`Vengo del planeta ${date.name}`)
+        return obtenerNave(22)
+    })
     .catch(error)
-
-obtenerPlaneta(1)
-    .then((date) => console.log(`Vengo del planeta ${date.name}`))
-    .catch(error)
-
-obtenerNave(22)
-    .then((date) => console.log(`y estoy abordo del ${date.name}`))
+    .then((date) => {
+        console.log(`y estoy abordo del ${date.name}`)
+    })
     .catch(error)
