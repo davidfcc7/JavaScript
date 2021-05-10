@@ -16,36 +16,32 @@ const security = {crossDomain: true}
 function obtenerPersonajes (idPersonaje, callback){
     //obtener la url de la API y del primer campo, reemplazar el string ':id' por el id que deseamos obtener del campo PEOPLE_URL, crossDomain: true (colocar sistema de seguridad https para evitar suplantaciones)
     const urlPeople = `${API_URL}${PEOPLE_URL.replace(':id', idPersonaje)}` 
-    $.get(urlPeople, security, function (date) {
-        console.log(`Hola yo soy ${date.name}, mido ${date.height} cm y peso ${date.mass} kg`)//la palabra reservada arguments contiene todos los argumentos de la funcion anterior
-        if (callback){
-            callback()
-        }
+    $.get(urlPeople, security, callback).fail(function(){
+        console.log(`no se pudo obtener el presonaje`)
     })
 }
 function obtenerPlaneta (idPlaneta, callback){
     const urlPlaneta = `${API_URL}${PLANETS_URL.replace(':id', idPlaneta)}`
-    $.get(urlPlaneta, security, function (date){
-        console.log(`Vengo del planeta ${date.name}`)
-        if (callback){
-            callback()
-        }
+    $.get(urlPlaneta, security, callback).fail(function(){//fail obtienen un callback que imprime un error en cado de no existir el dato o perder conexion con la api
+        console.log(`no se pudo obtener el planeta del personaje`)
     })
 }
 function obtenerNave (idNave, callback){
     const urlNave = `${API_URL}${STARSHIPS.replace(':id', idNave)}`
-    $.get(urlNave, security, function (date){
-        console.log(`Estoy abordo del ${date.name}`)
-        if (callback){
-            callback()
-        }
+    $.get(urlNave, security, callback).fail(function(){
+        console.log(`no se pudo obtener la nave del personaje`)
     })
 }
 
-obtenerPersonajes(1, function(){
-    obtenerPlaneta(1, function(){
-        obtenerNave(22)
+obtenerPersonajes(1, function(date){
+    console.log(`Hola yo soy ${date.name}, mido ${date.height} cm y peso ${date.mass} kg`)
+    obtenerPlaneta(1, function(date){
+        console.log(`Vengo del planeta ${date.name}`)
+        obtenerNave(22, function(date){
+            console.log(`Estoy abordo del ${date.name}`)
+        })
     })
+    //obtenerPersonajes(arguments)//la palabra reservada arguments contiene todos los argumentos de la funcion anterior
 })
 
 
