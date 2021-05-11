@@ -35,21 +35,21 @@ function obtenerPersonajes(idPersonaje) {
     //obtener la url de la API y del primer campo, reemplazar el string ':id' por el id que deseamos obtener del campo PEOPLE_URL, crossDomain: true (colocar sistema de seguridad https para evitar suplantaciones)
     return new Promise(function (resolve, reject) { //funcion funciona o no funciona
         const urlPeople = `${API_URL}${PEOPLE_URL.replace(':id', idPersonaje)}`
-        $.get(urlPeople, security, (datos) => resolve(datos)) //si funciona
+        $.get(urlPeople, security, (datosPersonajes) => resolve(datosPersonajes)) //si funciona
             .fail(() => reject(idPersonaje)) //si no funciona rechaza al personaje y muestra un error
     })
 }
 function obtenerPlaneta(idPlaneta) {
     return new Promise(function (resolve, reject) {
         const urlPlaneta = `${API_URL}${PLANETS_URL.replace(':id', idPlaneta)}`
-        $.get(urlPlaneta, security, (datos) => resolve(datos))
+        $.get(urlPlaneta, security, (datosPlanetas) => resolve(datosPlanetas))
             .fail(() => reject(idPlaneta))//fail obtienen un callback que imprime un error en cado de no existir el dato o perder conexion con la api
     })
 }
 function obtenerNave(idNave) {
     return new Promise(function (resolve, reject) {
         const urlNave = `${API_URL}${STARSHIPS.replace(':id', idNave)}`
-        $.get(urlNave, security, (dato) => resolve(dato))
+        $.get(urlNave, security, (datosNave) => resolve(datosNave))
             .fail(() => reject(idNave))
     })
 }
@@ -60,8 +60,8 @@ async function obtenerPersonaje() {
     var ids = [1]
     var promesasPersonaje = ids.map((idPersonaje) => obtenerPersonajes(idPersonaje))
     try{
-        var date = await Promise.all(promesasPersonaje) //1. se cargan todas las promesas en promise, 2. cuando termine se guardan en la variable date y luego se muestran, este proceso debe ser asincrono para no interrumpir la ejecucion del programa
-        console.table(date)
+        var personaje = await Promise.all(promesasPersonaje) //1. se cargan todas las promesas en promise, 2. cuando termine se guardan en la variable date y luego se muestran, este proceso debe ser asincrono para no interrumpir la ejecucion del programa
+        console.table(personaje)
     }catch (idPersonaje){
         error(idPersonaje)
     }
@@ -74,14 +74,14 @@ var ids = [1]
 var promesasPlaneta = ids.map((idPlaneta) => obtenerPlaneta(idPlaneta))
 Promise
     .all(promesasPlaneta)
-    .then((date) => console.table(date))
+    .then((planeta) => console.table(planeta))
     .catch(error)
 
 var ids = [22]
 var promesasNaves = ids.map((idNave) => obtenerNave(idNave))
 Promise
     .all(promesasNaves)
-    .then((date) => console.table(date))
+    .then((nave) => console.table(nave))
     .catch(error)
 /**
  * CADENA DE PROMESAS EN SERIE

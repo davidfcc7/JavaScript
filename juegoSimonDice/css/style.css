@@ -1,0 +1,66 @@
+body {
+  margin: 0;
+  background: #dedede;
+  display: flex;
+  align-items: center;
+  height: 100vh;
+}
+.gameboard {
+  height: 100vh;
+  width: 100vh;
+  border-radius: 50%;
+  overflow: hidden;
+  margin: 0 auto;
+  max-height: 60vh;
+  max-width: 60vh;
+}
+.gameboard .color {
+  width: 50%;
+  height: 50%;
+  display: inline-block;
+}
+.gameboard .left {
+  float: left;
+}
+.gameboard .right {
+  float: left;
+}
+.gameboard .celeste {
+  background: #22a6b3;
+}
+.gameboard .celeste.light {
+  background: #7ed6df;
+}
+.gameboard .violeta {
+  background: #be2edd;
+}
+.gameboard .violeta.light {
+  background: #e056fd;
+}
+.gameboard .naranja {
+  background: #f0932b;
+}
+.gameboard .naranja.light {
+  background: #ffbe76;
+}
+.gameboard .verde {
+  background: #6ab04c;
+}
+.gameboard .verde.light {
+  background: #badc58;
+}
+.gameboard .btn-start {
+  width: 400px;
+  height: 100px;
+  color: white;
+  font-size: 2.5rem;
+  position: absolute;
+  top: calc(50% - 50px);
+  left: calc(50% - 200px);
+  border-radius: 16px;
+  background: linear-gradient(145deg, #2e4044, #27363a);
+  box-shadow: 5px 5px 8px #212e31, -5px -5px 8px #354a4f;
+}
+.gameboard .hide {
+  display: none;
+}
