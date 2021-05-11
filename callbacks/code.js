@@ -1,3 +1,5 @@
+// PALABRA RESERVADA async
+// al colocar la palabra async en una funcion esta funcion se va acompilar el una cola de ejecucion, el codigo seguirá su ejecucion normal mientras esa funcion se sigue ejecutando fuera del codigo, cuanto termina el proceso del codigo la funcion se agrega al programa
 //1. capturar la URL que se va a consumir
 
 const API_URL = 'https://swapi.dev/api/'
@@ -28,7 +30,7 @@ obtenerPersonajes(1, function(date){
     //obtenerPersonajes(arguments)//la palabra reservada arguments contiene todos los argumentos de la funcion anterior
 })
 */
-
+//BUSCA LOS DATOS CON PROMISE SI EXISTEN O NO
 function obtenerPersonajes(idPersonaje) {
     //obtener la url de la API y del primer campo, reemplazar el string ':id' por el id que deseamos obtener del campo PEOPLE_URL, crossDomain: true (colocar sistema de seguridad https para evitar suplantaciones)
     return new Promise(function (resolve, reject) { //funcion funciona o no funciona
@@ -51,28 +53,35 @@ function obtenerNave(idNave) {
             .fail(() => reject(idNave))
     })
 }
-
+// IMPRIME LOS DATOS QUE OPTIENE DE LA API
 let error = () => console.log(`error, dato no encontrado`)
 
-var ids = [1]
-var promesasPersonaje = ids.map((idPersonaje) => obtenerPersonajes(idPersonaje))
-Promise
-    .all(promesasPersonaje)
-    .then((date) => console.log(date))
-    .catch(error)
+async function obtenerPersonaje() {
+    var ids = [1]
+    var promesasPersonaje = ids.map((idPersonaje) => obtenerPersonajes(idPersonaje))
+    try{
+        var date = await Promise.all(promesasPersonaje) //1. se cargan todas las promesas en promise, 2. cuando termine se guardan en la variable date y luego se muestran, este proceso debe ser asincrono para no interrumpir la ejecucion del programa
+        console.table(date)
+    }catch (idPersonaje){
+        error(idPersonaje)
+    }
+}
+obtenerPersonaje()
+
+
 
 var ids = [1]
 var promesasPlaneta = ids.map((idPlaneta) => obtenerPlaneta(idPlaneta))
 Promise
     .all(promesasPlaneta)
-    .then((date) => console.log(date))
+    .then((date) => console.table(date))
     .catch(error)
 
 var ids = [22]
 var promesasNaves = ids.map((idNave) => obtenerNave(idNave))
 Promise
     .all(promesasNaves)
-    .then((date) => console.log(date))
+    .then((date) => console.table(date))
     .catch(error)
 /**
  * CADENA DE PROMESAS EN SERIE
