@@ -4,7 +4,7 @@ const violeta = document.getElementById('violeta')
 const naranja = document.getElementById('naranja')
 const verde = document.getElementById('verde')
 const btnEmpezar = document.getElementById('btnEmpezar')
-const ultimoNivel = 10
+const ultimoNivel = 3
 
 //clase juego
 class Juego {
@@ -92,14 +92,28 @@ class Juego {
                 this.nivel++
                 this.eliminarEventosClick()
                 if(this.nivel === (ultimoNivel + 1)){
-                    alert('Ganaste el juego')
+                    
+                    this.ganoElJuego
                 } else {
                     setTimeout(this.siguienteNivel.bind(this),2000) 
                 }
             }
         }else{
-            //perdió
+            this.perdioElJuego
         }
+    }
+    ganoElJuego(){
+        swal("Buen trabajo", "Superaste los niveles", "success")
+        .then( () => {
+            this.inicializar().bind(this)
+        })
+    }
+    perdioElJuego(){
+        swal("Lo siento", "has perdido", "error")
+        .then( () => {
+            this.eliminarEventosClick().bind(this)
+            this.inicializar().bind(this)
+        })
     }
 }
 // funcion para empezar a jugar
