@@ -13,7 +13,7 @@ var personaje = {
 var jugadores = new Array()
 jugadores[0] = {
     x: contexto.canvas.width,
-    y: contexto.canvas.height - suelo.height - jugador.height
+    y: 0
 }
 //imagenes
 var balon = new Image()
@@ -33,17 +33,20 @@ function keyDown() {
 }
 setInterval(loop,1000/FPS)
 function loop(){
-    contexto.clearRect(0,0,300,530)
-    //fondo
+    contexto.clearRect(0, 0, 300, 530)
+    //fondo 
     contexto.drawImage(fondo, 0, 0)
     contexto.drawImage(suelo, 0, contexto.canvas.height - suelo.height)
     //balon
     contexto.drawImage(balon, personaje.x, personaje.y)
     //jugadores
     for (var i = 0; i < jugadores.length; i++){
-        var 
-        contexto.drawImage(jugadorAire, jugadores[i].x, jugadores[i].y)
-        contexto.drawImage(jugadorSuelo, )
+        var espacio = jugador.height + 150
+        var salto = jugador.height + 80
+        var segundoJugador = jugador.width + 20
+        contexto.drawImage(jugador, jugadores[i].x + segundoJugador, salto - jugadores[i].y)
+        contexto.drawImage(jugador, jugadores[i].x, jugadores[i].y + espacio)
+        jugadores[i].x--
     }
     //condiciones
     personaje.y += gravedad
