@@ -10,43 +10,51 @@ var personaje = {
     w: 50,
     h: 50
 }
-var jugadores = new Array()
-jugadores[0] = {
+var tuberias = new Array()
+tuberias[0] = {
     x: contexto.canvas.width,
     y: 0
 }
 //imagenes
-var balon = new Image()
-balon.src = "./imagenes/basketball 1balon (1).png"
+var bird = new Image()
+bird.src = "./imagenes/bird.png"
 
-var jugador = new Image()
-jugador.src = "./imagenes/jugador-de-baloncesto 1jugador 1jugador.png"
+var tuberiaNorte = new Image()
+tuberiaNorte.src = "./imagenes/tuberiaNorte.png"
 
-var fondo = new Image()
-fondo.src = "./imagenes/background.png"
+var tuberiaSur = new Image()
+tuberiaSur.src = "./imagenes/tuberiaSur.png"
+
+var background = new Image()
+background.src = "./imagenes/background.png"
 
 var suelo = new Image()
 suelo.src = "./imagenes/suelo.png"
 //control
 function keyDown() {
-    personaje.y -= 25
+    personaje.y -= 30
 }
 setInterval(loop,1000/FPS)
 function loop(){
     contexto.clearRect(0, 0, 300, 530)
     //fondo 
-    contexto.drawImage(fondo, 0, 0)
+    contexto.drawImage(background, 0, 0)
     contexto.drawImage(suelo, 0, contexto.canvas.height - suelo.height)
     //balon
-    contexto.drawImage(balon, personaje.x, personaje.y)
+    contexto.drawImage(bird, personaje.x, personaje.y)
     //jugadores
-    for (var i = 0; i < jugadores.length; i++){
-        var espacio = jugador.height + 150
-        var salto = jugador.height + 80
-        var segundoJugador = jugador.width + 20
-        contexto.drawImage(jugador, jugadores[i].x + segundoJugador, salto - jugadores[i].y)
-        contexto.drawImage(jugador, jugadores[i].x, jugadores[i].y + espacio)
-        jugadores[i].x--
+    for (var i = 0; i < tuberias.length; i++){
+        var espacio = tuberiaNorte.height + 80
+        contexto.drawImage(tuberiaNorte, tuberias[i].x, tuberias[i].y)
+        contexto.drawImage(tuberiaSur, tuberias[i].x, tuberias[i].y + espacio)
+        tuberias[i].x--
+
+        if(tuberias[i].x == 100){
+            tuberias.push({
+                x:contexto.canvas.width,
+                y:Math.floor(Math.random()*tuberiaNorte.height) - tuberiaNorte.height
+            })
+        }
     }
     //condiciones
     personaje.y += gravedad
