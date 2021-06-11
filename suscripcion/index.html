@@ -17,18 +17,17 @@
             <div class="row suscribete">
                 <div class="col text-center">
                     <form>
-                        <div>
-                            <input type="email" class="form-control" id="exampleInputEmail1"
-                                aria-describedby="emailHelp" placeholder="ejemplo@mail.com">
-                        </div>
-                        <button type="button" class="btn btn-primary" id="btn-guardar">Primary</button>
+                        <input type="email" name="" id="correo" class="form-control py-22 font-bold"
+                            placeholder="Ingrese su correo..." />&nbsp;&nbsp;
+                        <button class="btn btn-warning font-weight-bold" type="button" id="btnGuardar"
+                            onclick="saveEmail()"><i class="fa fa-fw fa-send"></i>Suscribete</button>
                     </form>
                 </div>
             </div>
             <div class="row leads">
                 <div class="col text-center">
                     <div class="d-grid">
-                        <button class="btn btn-leads" type="button">Descargar leads</button>
+                        <button class="btn btn-leads" type="button" onclick="seeEmail()" id="btnMostrar">Descargar leads</button>
                     </div>
                 </div>
             </div>

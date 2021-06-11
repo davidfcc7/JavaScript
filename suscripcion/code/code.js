@@ -1,14 +1,34 @@
-let textoEmail = document.getElementById("exampleInputEmail1")
-let btn = document.getElementById("btn-guardar")
-btnEmail = btn.addEventListener("click", eventoGuardar)
+var guardar = document.getElementById("btnGuardar");
+guardar.addEventListener("click", saveEmail);
 
-let guardarDatos = [i]
+var mostrar = document.getElementById("btnMostrar");
+mostrar.addEventListener("click", seeEmail);
 
-//for que guarde los valores en i
+var dato = document.getElementById("correo")
 
-function eventoGuardar(){
-    let guardar = textoEmail.value
-    console.log(guardar)
+guardarArray = []
+var saveEmail = () => {
+    datoCorreo = dato.value
+    guardarArray.push(datoCorreo)
+    console.log(guardarArray.length)
 }
 
-eventoGuardar()
+var seeEmail = () => {
+    var csv = guardarArray;
+    for (var i = 0; i < guardarArray.length; i++){
+        csv += "\n";
+    }
+
+    var hiddenElement = document.createElement('a');
+    hiddenElement.href = 'data:text/csv;charset=utf-8,' + encodeURI(csv);
+    hiddenElement.target = '_blank';
+    hiddenElement.download = 'data.csv';
+    hiddenElement.click();
+}
+
+
+/*var seeEmail = () => {
+    for (var i = 0; i < guardarArray.length; i++) {
+        console.log(guardarArray[i])
+    }
+}*/
