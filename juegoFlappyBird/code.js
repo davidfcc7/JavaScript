@@ -2,6 +2,7 @@ var contexto = document.getElementById("lienzoJuego").getContext("2d")
 contexto.canvas.width = 300
 contexto.canvas.height = 530
 
+var score = 0
 var FPS = 60
 var gravedad = 1.5
 var personaje = {
@@ -49,15 +50,28 @@ function loop(){
         contexto.drawImage(tuberiaSur, tuberias[i].x, tuberias[i].y + espacio)
         tuberias[i].x--
 
-        if(tuberias[i].x == 100){
+        if(tuberias[i].x == 150){
             tuberias.push({
                 x:contexto.canvas.width,
                 y:Math.floor(Math.random()*tuberiaNorte.height) - tuberiaNorte.height
             })
         }
+        //COLISION
+
+        if(personaje.x + bird.width >= tuberias[i].x && personaje.x <= tuberias[i].x + tuberiaNorte.width && (personaje.y <= tuberias[i].y + tuberiaNorte.height || personaje.y + bird.height >= tuberias[i].y + espacio) || personaje.y + bird.height >= contexto.canvas.height - suelo.height){
+            location.reload()
+        }
+        //SCORE
+        if(tuberias[i].x == personaje.x){
+            score ++
+        }
     }
     //condiciones
     personaje.y += gravedad
+    contexto.fillstyle = "rgba(0,0,0,1)"
+    contexto.font = "25px Arial"
+    contexto.fillText("score: " +score,10,contexto.canvas.height-40)
+
 }
 
 window.addEventListener("keydown", keyDown)
